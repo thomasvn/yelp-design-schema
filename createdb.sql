@@ -1,11 +1,13 @@
 ----------------------------------- Users ------------------------------------
 CREATE TABLE YelpUser (
     YelpUserID VARCHAR(256) PRIMARY KEY,
+    Email VARCHAR(256),
     FirstName VARCHAR(256),
     LastName VARCHAR(256),
-    BirthDate DATE,
-    BirthPlace VARCHAR(256),
-    Email INTEGER,
+    BirthDate VARCHAR(256),
+    BirthPlaceCity VARCHAR(256),
+    BirthPlaceState VARCHAR(256),
+    BirthPlaceZipCode VARCHAR(256),
     Gender VARCHAR(256),
     ProfilePicture BLOB
 );
@@ -22,16 +24,22 @@ CREATE TABLE YelpFriend (
 
 
 ---------------------------------- Businesses ----------------------------------
+CREATE TABLE BusinessCategory (
+    BusinessCategoryID VARCHAR(256) PRIMARY KEY,
+    Name VARCHAR(256)
+);
+
 CREATE TABLE Business (
     BusinessID VARCHAR(256) PRIMARY KEY,
     Name VARCHAR(256),
-    PhoneNum VARCHAR(256),
     Street VARCHAR(256),
     City VARCHAR(256),
     State VARCHAR(256),
+    ZipCode VARCHAR(256),
+    PhoneNum VARCHAR(256),
     ReviewCount INTEGER,
-    BusinessCategoryID VARCHAR(256)
-    -- FOREIGN KEY (BusinessCategoryID) REFERENCES BusinessCategory(BusinessCategoryID)
+    BusinessCategoryID VARCHAR(256),
+    FOREIGN KEY (BusinessCategoryID) REFERENCES BusinessCategory(BusinessCategoryID)
 );
 
 CREATE TABLE Photo (
@@ -41,14 +49,7 @@ CREATE TABLE Photo (
     BusinessID VARCHAR(256),
     YelpUserID VARCHAR(256),
     FOREIGN KEY (BusinessID) REFERENCES Business(BusinessID),
-    FOREIGN KEY (YelpUserID) REFERENCES YelpUser(YelpUserID) -- don't we need to make sure that the Photo is tied back to the user??
-);
-
-CREATE TABLE BusinessCategory (
-    BusinessCategoryID VARCHAR(256) PRIMARY KEY,
-    Name VARCHAR(256),
-    BusinessID VARCHAR(256),
-    FOREIGN KEY (BusinessID) REFERENCES Business(BusinessID)
+    FOREIGN KEY (YelpUserID) REFERENCES YelpUser(YelpUserID)
 );
 
 
@@ -56,9 +57,9 @@ CREATE TABLE BusinessCategory (
 CREATE TABLE Review (
     ReviewID VARCHAR(256) PRIMARY KEY,
     Rating INTEGER,
-    PublishDate DATE,
-    IsRecommended INTEGER, -- Acts as a boolean
     YelpUserID VARCHAR(256),
+    PublishDate VARCHAR(256),
+    IsRecommended VARCHAR(256), -- Acts as a boolean
     BusinessID VARCHAR(256),
     NumberOfFunnyReactions INTEGER,
     NumberOfCoolReactions INTEGER,

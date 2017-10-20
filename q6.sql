@@ -6,3 +6,5 @@
   reviews by travelers (decreasing), then bid (increasing). For each restaurant,
   print its bid, name, score, and numberof traveler reviews received.
 */
+
+-- TODO: RowNum is only returning us one

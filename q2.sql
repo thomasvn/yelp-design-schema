@@ -7,4 +7,4 @@
 SELECT B.BusinessID, B.Name, C.BusinessCategoryID
 FROM Business B, BusinessCategory C
 WHERE B.Name LIKE "%Coffee%" AND NOT C.Type LIKE "%Coffee%"
-ORDER BY B.Name ASC
+ORDER BY B.BusinessID ASC
