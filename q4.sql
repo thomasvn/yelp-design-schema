@@ -6,3 +6,10 @@
   each business, print its bid (business id), name, average number of stars, and
   number of reviews.
 */
+SELECT B.BusinessID, B.Name, AVG(R.Rating) as AvgRating, B.ReviewCount
+FROM Business B
+INNER JOIN BusinessCategory C ON B.BusinessCategoryID = C.BusinessCategoryID
+INNER JOIN Review R ON B.BusinessID = R.BusinessID
+WHERE C.Name = 'Breakfast and Brunch' AND B.City = 'San Jose' AND B.State = 'CA' AND ROWNUM <= 11
+GROUP BY B.BusinessID, B.Name, B.ReviewCount
+ORDER BY AvgRating DESC, B.ReviewCount DESC, B.BusinessID ASC;

@@ -3,4 +3,4 @@
 */
 SELECT COUNT(*)
 FROM Business B
-WHERE B.State = "CA"
+WHERE B.State = 'CA';
