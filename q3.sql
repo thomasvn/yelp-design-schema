@@ -11,6 +11,4 @@ FROM Business B
 INNER JOIN BusinessCategory C ON B.BusinessCategoryID = C.BusinessCategoryID
 WHERE C.Name = 'Bars'
 GROUP BY B.State, B.BusinessID, B.Name
-ORDER BY B.State, B.BusinessID;
-
--- TODO: Limit to Bars
+ORDER BY B.State ASC, B.BusinessID DESC;

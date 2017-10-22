@@ -6,12 +6,14 @@
   reviews by travelers (decreasing), then bid (increasing). For each restaurant,
   print its bid, name, score, and numberof traveler reviews received.
 */
-SELECT B.BusinessID, B.Name, AVG(R.Rating) AS Score, B.ReviewCount
-FROM Business B
-INNER JOIN Review R ON B.BusinessID = R.BusinessID
-INNER JOIN BusinessCategory C ON C.BusinessCategoryID = B.BusinessCategoryID
-WHERE B.City = 'San Jose' AND B.State = 'CA' AND C.Name = 'Burgers'
-GROUP BY B.BusinessID, B.Name, B.ReviewCount
-ORDER BY Score DESC;
-
--- TODO: List the top 5
+SELECT *
+FROM (
+    SELECT B.BusinessID, B.Name, AVG(R.Rating) AS Score, B.ReviewCount
+    FROM Business B
+    INNER JOIN Review R ON B.BusinessID = R.BusinessID
+    INNER JOIN BusinessCategory C ON C.BusinessCategoryID = B.BusinessCategoryID
+    WHERE B.City = 'San Jose' AND B.State = 'CA' AND C.Name = 'Burgers'
+    GROUP BY B.BusinessID, B.Name, B.ReviewCount
+    ORDER BY Score DESC
+)
+WHERE ROWNUM < 6;

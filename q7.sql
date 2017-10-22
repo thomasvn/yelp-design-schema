@@ -12,5 +12,4 @@ FROM (
     GROUP BY R.YelpUserID, Y.FirstName
     ORDER BY NumUseful DESC, R.YelpUserID DESC
 )
-WHERE ROWNUM < 2;
--- TODO: We only want to find the highest sum of useful votes
+WHERE ROWNUM < 3;
